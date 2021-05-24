@@ -58,6 +58,8 @@
   <ItemGroup>
     <Compile Include="Assets\circleScript.cs" />
     <Compile Include="Assets\SpawnEntity.cs" />
+    <Compile Include="Assets\cameraMovement.cs" />
+    <Compile Include="Assets\zoomScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

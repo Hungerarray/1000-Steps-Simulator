@@ -10,15 +10,67 @@ public class SpawnEntity : MonoBehaviour
     //[Range(500, 10_000)]
     public int totalEntity;
     public int limit = 100;
+    public List<float> Distances;
+    public event Action RunStart;
+    public event Action RunCompleted;
 
     private List<GameObject> entities;
     private int steps = 1000;
     private Task<List<int>> sequence;
     private int entityCompleted = 0;
 
+    private bool run = false;
 
-    // Start is called before the first frame update
-    async Task Start()
+    // Update is called once per frame
+    async Task Update()
+    {
+        if (run)
+        {
+            RunStart();
+            clearEntities();
+            await GenerateEntities();
+            run = false;
+        }
+
+        if (entityCompleted == totalEntity)
+        {
+            DisableGameObj(limit);
+            RunCompleted();
+        }
+    }
+
+    public void StartSimul()
+    {
+        run = true;
+    }
+
+    public void SetTotalEnity(string text)
+    {
+        if(!run)
+        {
+            totalEntity = int.Parse(text);
+        }
+    }
+
+    public void SetLimit(string text)
+    {
+        if(!run)
+        {
+            limit = int.Parse(text);
+        }
+    }
+    private void clearEntities()
+    {
+        Distances = null;
+        if(entities != null)
+        {
+            foreach (var entity in entities)
+                Destroy(entity);
+            entities.Clear();
+        }
+    }
+
+    private async Task GenerateEntities()
     {
         entities = new List<GameObject>(totalEntity);
         sequence = GenerateSequence();
@@ -37,6 +89,7 @@ public class SpawnEntity : MonoBehaviour
         if (entityCompleted == totalEntity)
         {
             SortList();
+            Distances = entities.Select(obj => obj.GetComponent<circleScript>().distance).ToList();
         }
     }
 
@@ -89,17 +142,13 @@ public class SpawnEntity : MonoBehaviour
         return ls;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(entityCompleted == totalEntity)
-        {
-            DisableGameObj(limit);
-        }
-    }
-
+  
     private void DisableGameObj(int limit)
     {
+        for (int i = 0; i < limit; ++i)
+        {
+            entities[i].SetActive(true);
+        }
         for (int i = limit; i < totalEntity; ++i)
         {
             entities[i].SetActive(false);

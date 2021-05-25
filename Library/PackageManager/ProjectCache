@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637575433664217577
-    m_Hash: 1908600920
+      ticks: 637575573037295015
+    m_Hash: 3491163914
   m_LockFileStatus:
     m_FilePath: D:/Unity/Games/1000 Steps Simulator/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637575433740800515
-    m_Hash: 3406666390
+      ticks: 637575573037295015
+    m_Hash: 3512694268
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:

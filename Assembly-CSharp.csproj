@@ -59,9 +59,10 @@
     <Compile Include="Assets\cameraMovement.cs" />
     <Compile Include="Assets\circleScript.cs" />
     <Compile Include="Assets\SpawnEntity.cs" />
-    <Compile Include="Assets\zoomScript.cs" />
-    <Compile Include="Assets\textScript.cs" />
     <Compile Include="Assets\averagedisplay.cs" />
+    <Compile Include="Assets\textScript.cs" />
+    <Compile Include="Assets\zoomScript.cs" />
+    <Compile Include="Assets\quit.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
